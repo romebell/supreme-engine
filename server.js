@@ -16,10 +16,6 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.static(__dirname + '/public'));
 app.use(layouts);
 
-app.get('/', (req, res) => {
-  res.render('index');
-})
-
 app.use(session({
   secret: SECRET_SESSION,
   resave: false,
