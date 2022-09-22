@@ -19,6 +19,22 @@ router.get('/search', (req, res) => {
     res.render('songs/search');
 });
 
+router.post('/new', async (req, res) => {
+    // print req.body to view form inputs
+    console.log('****** /new', req.body);
+    // create song (for db)
+    const newSong = await db.song.create({
+        title: req.body.title,
+        artist: req.body.artist,
+        img: req.body.img,
+        lyrics: req.body.lyrics,
+        userId: parseInt(req.body.userId)
+    });
+    console.log(newSong.toJSON());
+    // res.redirect to all favorite songs
+    res.redirect('/songs');
+});
+
 router.post('/results', async (req, res) => {
     // get back the search item
     console.log('>>>>> SEARCH DATA', req.body);
