@@ -1,4 +1,9 @@
 'use strict';
+<<<<<<< HEAD
+=======
+const bcrypt = require('bcryptjs');
+
+>>>>>>> origin/codealong
 const {
   Model
 } = require('sequelize');
@@ -44,5 +49,27 @@ module.exports = (sequelize, DataTypes) => {
     sequelize,
     modelName: 'user',
   });
+<<<<<<< HEAD
+=======
+
+  user.addHook('beforeCreate', (pendingUser) => {
+    let hash = bcrypt.hashSync(pendingUser.password, 12);
+    pendingUser.password = hash;
+  });
+
+  user.prototype.validPassword = function(typedPassword) {
+    let isCorrectPassword = bcrypt.compareSync(typedPassword, this.password); // boolean
+
+    return isCorrectPassword;
+  }
+
+  user.prototype.toJSON = function() {
+    let userData = this.get();
+    delete userData.password; // this does not mean it's deleted from database, only to view user
+
+    return userData;
+  }
+
+>>>>>>> origin/codealong
   return user;
 };
