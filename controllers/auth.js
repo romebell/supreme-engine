@@ -1,10 +1,7 @@
 const express = require('express');
 const router = express.Router();
-<<<<<<< HEAD
-=======
 const passport = require('../config/ppConfig');
 const db = require('../models');
->>>>>>> origin/codealong
 
 router.get("/signup", (req, res) => {
   res.render("auth/signup");
@@ -14,8 +11,6 @@ router.get("/login", (req, res) => {
   res.render("auth/login");
 });
 
-<<<<<<< HEAD
-=======
 router.get('/logout', (req, res) => {
   req.logOut(() => {
     console.log('I am logged out')
@@ -64,5 +59,4 @@ router.post('/signup', async (req, res) => {
   }
 });
 
->>>>>>> origin/codealong
 module.exports = router;

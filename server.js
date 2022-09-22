@@ -2,18 +2,12 @@ require('dotenv').config();
 const express = require('express');
 const layouts = require('express-ejs-layouts');
 const app = express();
-<<<<<<< HEAD
-
-// console.log(SECRET_SESSION);
-=======
 const session = require('express-session');
 const flash = require('connect-flash');
 const passport = require('./config/ppConfig');
 const isLoggedIn = require('./middleware/isLoggedIn');
 
 const SECRET_SESSION = process.env.SECRET_SESSION;
-console.log('yooooooo..... >>>', SECRET_SESSION);
->>>>>>> origin/codealong
 
 app.set('view engine', 'ejs');
 
@@ -22,12 +16,10 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.static(__dirname + '/public'));
 app.use(layouts);
 
-<<<<<<< HEAD
 app.get('/', (req, res) => {
   res.render('index');
 })
 
-=======
 app.use(session({
   secret: SECRET_SESSION,
   resave: false,
@@ -59,7 +51,6 @@ app.get('/profile', isLoggedIn, (req, res) => {
   const { id, name, email } = req.user.get(); 
   res.render('profile', { id, name, email });
 });
->>>>>>> origin/codealong
 
 const PORT = process.env.PORT || 3000;
 const server = app.listen(PORT, () => {
