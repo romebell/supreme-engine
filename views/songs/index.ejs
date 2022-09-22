@@ -82,9 +82,7 @@
                     <p class="card-text"><%= s.title %> - <%= s.artist %></p>
                     <div class="d-flex justify-content-between align-items-center">
                       <div class="btn-group">
-                       
-                        
-                        
+                        <!-- Form for deleting a song from list -->
                         <form method="POST" action="/songs/<%= s.id %>/?_method=DELETE">
                             <a type="button" class="btn btn-sm btn-outline-secondary" href="/songs/<%= s.id %>">Views</a>
                             <button type="submit" type="button" class="btn btn-sm btn-outline-secondary">Remove</button>

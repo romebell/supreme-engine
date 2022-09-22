@@ -68,4 +68,17 @@ router.post('/results', async (req, res) => {
     res.render('songs/results', { hits: response.data.response.hits });
 })
 
+
+router.delete('/:id', async (req, res) => {
+    // get song and remove
+
+    let songsDeleted = await db.song.destroy({
+        where: { id: req.params.id }
+    });
+    console.log('==== this is the delete route ======');
+    console.log('Amount of songs deleted', songsDeleted);
+    // redirect the user back to all songs
+    res.redirect('/songs');
+});
+
 module.exports = router;
