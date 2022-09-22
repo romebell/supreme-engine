@@ -15,6 +15,19 @@ router.get('/', async (req, res) => {
     res.render('songs/index', { songs: songs });
 })
 
+router.get('/:id', async (req, res) => {
+    // print song to verify
+    let song = await db.song.findOne({
+        where: { id: req.params.id }
+    });
+    song = song.toJSON();
+    console.log('===== this is the show route =====');
+    console.log(song);
+    // go to the db and grab one song
+    // render the songs/show page with the song
+    res.render('songs/show', { song: song });
+})
+
 router.get('/search', (req, res) => {
     res.render('songs/search');
 });
