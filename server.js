@@ -6,12 +6,14 @@ const session = require('express-session');
 const flash = require('connect-flash');
 const passport = require('./config/ppConfig');
 const isLoggedIn = require('./middleware/isLoggedIn');
+const methodOverride = require('method-override');
 
 const SECRET_SESSION = process.env.SECRET_SESSION;
 
 app.set('view engine', 'ejs');
 
 app.use(require('morgan')('dev'));
+app.use(methodOverride('_method'));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(__dirname + '/public'));
 app.use(layouts);
@@ -41,6 +43,7 @@ app.get('/', (req, res) => {
 
 // access to all of our auth routes GET /auth/login, GET /auth/signup POST routes
 app.use('/auth', require('./controllers/auth'));
+app.use('/songs', isLoggedIn, require('./controllers/songs'));
 
 // Add this above /auth controllers
 app.get('/profile', isLoggedIn, (req, res) => {
