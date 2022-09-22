@@ -6,6 +6,15 @@ require('dotenv').config();
 const axios = require('axios');
 
 // routes
+router.get('/', async (req, res) => {
+    // get all of the songs from the db
+    let songs = await db.song.findAll();
+    songs = songs.map(s => s.toJSON()); // removes all of the unncessary data
+    console.log(songs); // this shows me all of the song data -> previousValues
+    // render the (songs/index) page
+    res.render('songs/index', { songs: songs });
+})
+
 router.get('/search', (req, res) => {
     res.render('songs/search');
 });
