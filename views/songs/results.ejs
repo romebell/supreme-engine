@@ -7,12 +7,14 @@
     <h3><%= song.result.artist_names %> </h3>
     <img src=<%= song.result.header_image_thumbnail_url %> >
     
+    
     <form method="POST" action="/songs/new">
       <input type="text" value="<%= song.result.full_title %>" name="title" hidden>
       <input type="text" value="<%= song.result.artist_names %>" name="artist" hidden>
       <input type="text" value="<%= song.result.header_image_thumbnail_url %>" name="img" hidden>
       <input type="text" value="<%= song.result.lyrics_state %>" name="lyrics" hidden>
       <input type="text" value="<%= currentUser.id %>" name="userId" hidden>
+      <input type="text" value="<%= song.result.url %>" name="url" hidden>
       <button type="submit">Add Song</button>
     </form>
     <br>

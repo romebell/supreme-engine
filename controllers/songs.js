@@ -15,6 +15,10 @@ router.get('/', async (req, res) => {
     res.render('songs/index', { songs: songs });
 })
 
+router.get('/search', (req, res) => {
+    res.render('songs/search');
+});
+
 router.get('/:id', async (req, res) => {
     // print song to verify
     let song = await db.song.findOne({
@@ -28,9 +32,7 @@ router.get('/:id', async (req, res) => {
     res.render('songs/show', { song: song });
 })
 
-router.get('/search', (req, res) => {
-    res.render('songs/search');
-});
+
 
 router.post('/new', async (req, res) => {
     // print req.body to view form inputs
@@ -41,7 +43,8 @@ router.post('/new', async (req, res) => {
         artist: req.body.artist,
         img: req.body.img,
         lyrics: req.body.lyrics,
-        userId: parseInt(req.body.userId)
+        userId: parseInt(req.body.userId),
+        url: req.body.url
     });
     console.log(newSong.toJSON());
     // res.redirect to all favorite songs

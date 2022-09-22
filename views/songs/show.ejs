@@ -42,6 +42,9 @@
     <br>
     <p class="lead">
       <a href="/songs" class="btn btn-lg btn-secondary fw-bold border-white bg-blue">View All Songs</a>
+      <% if (song.url) {%> 
+        <a href="<%= song.url %>" class="btn btn-lg btn-secondary fw-bold border-white bg-blue" target="_blank">View Lyrics</a>
+      <% } %> 
     </p>
   </main>
 
