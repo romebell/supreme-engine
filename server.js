@@ -51,6 +51,10 @@ app.get('/profile', isLoggedIn, (req, res) => {
   res.render('profile', { id, name, email });
 });
 
+app.get('*', (req, res) => {
+  res.render('404');
+});
+
 const PORT = process.env.PORT || 3000;
 const server = app.listen(PORT, () => {
   console.log(`🎧 You're listening to the smooth sounds of port ${PORT} 🎧`);
